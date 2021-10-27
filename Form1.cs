@@ -14,6 +14,7 @@ namespace ListaReproduccion_G3_2022_I
     {
 
         List<Musica> canciones;
+        private int contador;
         public Form1()
         {
             InitializeComponent();
@@ -66,6 +67,30 @@ namespace ListaReproduccion_G3_2022_I
         {
             canciones.Add(musica);
             lstbCanciones.Items.Add(musica.Cancion);
+        }
+
+        private void eliminarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            cargarToolStripMenuItem.Enabled = true;
+            lstbCanciones.Items.Clear();
+            canciones.Clear();
+        }
+
+        private void timerReproduccion_Tick(object sender, EventArgs e)
+        {
+            lbTiempoTrans.Text = contador.ToString();
+            contador++;
+
+        }
+
+        private void playToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            timerReproduccion.Start();
+        }
+
+        private void pausarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            timerReproduccion.Stop();
         }
     }
 }

@@ -29,7 +29,10 @@ namespace ListaReproduccion_G3_2022_I
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.lstbCanciones = new System.Windows.Forms.ListBox();
+            this.cmsListaDeReproducción = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.eliminarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -41,10 +44,6 @@ namespace ListaReproduccion_G3_2022_I
             this.archivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cargarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.agregarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ptbArtistaAlbum = new System.Windows.Forms.PictureBox();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.lbTiempoTrans = new System.Windows.Forms.Label();
-            this.lbTiempoTot = new System.Windows.Forms.Label();
             this.reproducciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.playToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pausarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -54,12 +53,19 @@ namespace ListaReproduccion_G3_2022_I
             this.aleatoriaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.automáticaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bucleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ptbArtistaAlbum = new System.Windows.Forms.PictureBox();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.lbTiempoTrans = new System.Windows.Forms.Label();
+            this.lbTiempoTot = new System.Windows.Forms.Label();
+            this.timerReproduccion = new System.Windows.Forms.Timer(this.components);
+            this.cmsListaDeReproducción.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ptbArtistaAlbum)).BeginInit();
             this.SuspendLayout();
             // 
             // lstbCanciones
             // 
+            this.lstbCanciones.ContextMenuStrip = this.cmsListaDeReproducción;
             this.lstbCanciones.FormattingEnabled = true;
             this.lstbCanciones.ItemHeight = 32;
             this.lstbCanciones.Location = new System.Drawing.Point(43, 178);
@@ -67,6 +73,21 @@ namespace ListaReproduccion_G3_2022_I
             this.lstbCanciones.Size = new System.Drawing.Size(366, 420);
             this.lstbCanciones.TabIndex = 0;
             this.lstbCanciones.SelectedIndexChanged += new System.EventHandler(this.lstbCanciones_SelectedIndexChanged);
+            // 
+            // cmsListaDeReproducción
+            // 
+            this.cmsListaDeReproducción.ImageScalingSize = new System.Drawing.Size(32, 32);
+            this.cmsListaDeReproducción.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.eliminarToolStripMenuItem});
+            this.cmsListaDeReproducción.Name = "cmsListaDeReproducción";
+            this.cmsListaDeReproducción.Size = new System.Drawing.Size(174, 42);
+            // 
+            // eliminarToolStripMenuItem
+            // 
+            this.eliminarToolStripMenuItem.Name = "eliminarToolStripMenuItem";
+            this.eliminarToolStripMenuItem.Size = new System.Drawing.Size(173, 38);
+            this.eliminarToolStripMenuItem.Text = "Eliminar";
+            this.eliminarToolStripMenuItem.Click += new System.EventHandler(this.eliminarToolStripMenuItem_Click);
             // 
             // label1
             // 
@@ -162,44 +183,9 @@ namespace ListaReproduccion_G3_2022_I
             // agregarToolStripMenuItem
             // 
             this.agregarToolStripMenuItem.Name = "agregarToolStripMenuItem";
-            this.agregarToolStripMenuItem.Size = new System.Drawing.Size(359, 44);
+            this.agregarToolStripMenuItem.Size = new System.Drawing.Size(231, 44);
             this.agregarToolStripMenuItem.Text = "Agregar";
             this.agregarToolStripMenuItem.Click += new System.EventHandler(this.agregarToolStripMenuItem_Click);
-            // 
-            // ptbArtistaAlbum
-            // 
-            this.ptbArtistaAlbum.Image = global::ListaReproduccion_G3_2022_I.Properties.Resources.parasiempre;
-            this.ptbArtistaAlbum.Location = new System.Drawing.Point(1162, 167);
-            this.ptbArtistaAlbum.Name = "ptbArtistaAlbum";
-            this.ptbArtistaAlbum.Size = new System.Drawing.Size(553, 294);
-            this.ptbArtistaAlbum.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.ptbArtistaAlbum.TabIndex = 3;
-            this.ptbArtistaAlbum.TabStop = false;
-            // 
-            // progressBar1
-            // 
-            this.progressBar1.Location = new System.Drawing.Point(691, 549);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(606, 11);
-            this.progressBar1.TabIndex = 4;
-            // 
-            // lbTiempoTrans
-            // 
-            this.lbTiempoTrans.AutoSize = true;
-            this.lbTiempoTrans.Location = new System.Drawing.Point(636, 528);
-            this.lbTiempoTrans.Name = "lbTiempoTrans";
-            this.lbTiempoTrans.Size = new System.Drawing.Size(27, 32);
-            this.lbTiempoTrans.TabIndex = 5;
-            this.lbTiempoTrans.Text = "0";
-            // 
-            // lbTiempoTot
-            // 
-            this.lbTiempoTot.AutoSize = true;
-            this.lbTiempoTot.Location = new System.Drawing.Point(1341, 528);
-            this.lbTiempoTot.Name = "lbTiempoTot";
-            this.lbTiempoTot.Size = new System.Drawing.Size(110, 32);
-            this.lbTiempoTot.TabIndex = 5;
-            this.lbTiempoTot.Text = "Duración";
             // 
             // reproducciónToolStripMenuItem
             // 
@@ -213,7 +199,7 @@ namespace ListaReproduccion_G3_2022_I
             this.automáticaToolStripMenuItem,
             this.bucleToolStripMenuItem});
             this.reproducciónToolStripMenuItem.Name = "reproducciónToolStripMenuItem";
-            this.reproducciónToolStripMenuItem.Size = new System.Drawing.Size(180, 36);
+            this.reproducciónToolStripMenuItem.Size = new System.Drawing.Size(180, 38);
             this.reproducciónToolStripMenuItem.Text = "Reproducción";
             // 
             // playToolStripMenuItem
@@ -221,12 +207,14 @@ namespace ListaReproduccion_G3_2022_I
             this.playToolStripMenuItem.Name = "playToolStripMenuItem";
             this.playToolStripMenuItem.Size = new System.Drawing.Size(359, 44);
             this.playToolStripMenuItem.Text = "Play";
+            this.playToolStripMenuItem.Click += new System.EventHandler(this.playToolStripMenuItem_Click);
             // 
             // pausarToolStripMenuItem
             // 
             this.pausarToolStripMenuItem.Name = "pausarToolStripMenuItem";
             this.pausarToolStripMenuItem.Size = new System.Drawing.Size(359, 44);
             this.pausarToolStripMenuItem.Text = "Pausar";
+            this.pausarToolStripMenuItem.Click += new System.EventHandler(this.pausarToolStripMenuItem_Click);
             // 
             // siguienteToolStripMenuItem
             // 
@@ -263,6 +251,46 @@ namespace ListaReproduccion_G3_2022_I
             this.bucleToolStripMenuItem.Size = new System.Drawing.Size(359, 44);
             this.bucleToolStripMenuItem.Text = "Bucle";
             // 
+            // ptbArtistaAlbum
+            // 
+            this.ptbArtistaAlbum.Image = global::ListaReproduccion_G3_2022_I.Properties.Resources.parasiempre;
+            this.ptbArtistaAlbum.Location = new System.Drawing.Point(1162, 167);
+            this.ptbArtistaAlbum.Name = "ptbArtistaAlbum";
+            this.ptbArtistaAlbum.Size = new System.Drawing.Size(553, 294);
+            this.ptbArtistaAlbum.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.ptbArtistaAlbum.TabIndex = 3;
+            this.ptbArtistaAlbum.TabStop = false;
+            // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(691, 549);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(606, 11);
+            this.progressBar1.TabIndex = 4;
+            // 
+            // lbTiempoTrans
+            // 
+            this.lbTiempoTrans.AutoSize = true;
+            this.lbTiempoTrans.Location = new System.Drawing.Point(636, 528);
+            this.lbTiempoTrans.Name = "lbTiempoTrans";
+            this.lbTiempoTrans.Size = new System.Drawing.Size(27, 32);
+            this.lbTiempoTrans.TabIndex = 5;
+            this.lbTiempoTrans.Text = "0";
+            // 
+            // lbTiempoTot
+            // 
+            this.lbTiempoTot.AutoSize = true;
+            this.lbTiempoTot.Location = new System.Drawing.Point(1341, 528);
+            this.lbTiempoTot.Name = "lbTiempoTot";
+            this.lbTiempoTot.Size = new System.Drawing.Size(110, 32);
+            this.lbTiempoTot.TabIndex = 5;
+            this.lbTiempoTot.Text = "Duración";
+            // 
+            // timerReproduccion
+            // 
+            this.timerReproduccion.Interval = 1000;
+            this.timerReproduccion.Tick += new System.EventHandler(this.timerReproduccion_Tick);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 32F);
@@ -284,6 +312,7 @@ namespace ListaReproduccion_G3_2022_I
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Text = "Form1";
+            this.cmsListaDeReproducción.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ptbArtistaAlbum)).EndInit();
@@ -319,6 +348,9 @@ namespace ListaReproduccion_G3_2022_I
         private System.Windows.Forms.ToolStripMenuItem aleatoriaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem automáticaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem bucleToolStripMenuItem;
+        private System.Windows.Forms.ContextMenuStrip cmsListaDeReproducción;
+        private System.Windows.Forms.ToolStripMenuItem eliminarToolStripMenuItem;
+        private System.Windows.Forms.Timer timerReproduccion;
     }
 }
 
