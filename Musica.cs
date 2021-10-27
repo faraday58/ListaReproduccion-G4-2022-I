@@ -1,7 +1,7 @@
 ﻿
 namespace ListaReproduccion_G3_2022_I
 {
-    class Musica
+    public class Musica
     {
         #region Atributos
         private string cancion;

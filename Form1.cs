@@ -23,17 +23,24 @@ namespace ListaReproduccion_G3_2022_I
 
         private void cargarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            cargarCanciones();
-            foreach(Musica cancion in canciones )
+            if ( lstbCanciones.Items.Count == 0 && canciones.Count == 0 )
             {
-                lstbCanciones.Items.Add(cancion.Cancion);
+                cargarCanciones();
+                foreach (Musica cancion in canciones)
+                {
+                    lstbCanciones.Items.Add(cancion.Cancion);
+                }
+            }else
+            {
+                cargarToolStripMenuItem.Enabled = false;
             }
+            
+            
         }
 
         public void cargarCanciones()
         {
-
-            canciones.Add(new Musica("Para siempre","Silvano Estrada"," Para Siempre-Single" ));
+            canciones.Add(new Musica("Para siempre","Silvana Estrada"," Para Siempre-Single" ));
             canciones.Add(new Musica("If you were Gone", "Alexander Rybak", "Fairytales"));
 
         }
@@ -44,6 +51,21 @@ namespace ListaReproduccion_G3_2022_I
             lbArtista.Text = canciones[lstbCanciones.SelectedIndex].Artista;
             lbAlbum.Text = canciones[lstbCanciones.SelectedIndex].Album;
 
+        }
+
+        private void agregarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //Instancia de la clase FormAgregar
+            FormAgregar formAgregar = new FormAgregar();
+            formAgregar.EnviarMusica += AgregarCancion;
+            formAgregar.ShowDialog();
+
+        }
+
+        public void AgregarCancion(Musica musica)
+        {
+            canciones.Add(musica);
+            lstbCanciones.Items.Add(musica.Cancion);
         }
     }
 }
